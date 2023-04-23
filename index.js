@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 //path
-const dirPath = path.join(__dirname, "timeStamp");
+const dirpath = path.join(__dirname, "timestamp");
          // console.log("dirpath",dirPath);
 
 // initializing express server
@@ -18,12 +18,12 @@ app.use(express.static("timestamp"));
 
 app.get("/Task",(req,res)=>{
     let time = new Date();
-let dataString = time.toUTCString().slice(0,-3);
+let dateString = time.toUTCString().slice(0,-3);
            // console.log(dataString);
 
-const timeStamp = `last created timeStamp:${dataString}`
+const content = `last created timeStamp:${dateString}`
 
-    fs.writeFile(`${dirPath}/date-time.txt`,timeStamp,(err)=>{
+    fs.writeFileSync(`${dirpath}/date-time.txt`,content,(err)=>{
         console.log("File Created");
     })
         res.sendFile(path.join(__dirname,"timestamp/date-time.txt" ));
